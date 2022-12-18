@@ -1,0 +1,56 @@
+{% extends 'display.html' %}
+{% load static %}
+
+
+
+<html>
+{% block display %}
+
+{% if request.user.is_authenticated%}
+<text/javascript>
+<script>
+   
+
+
+</script>
+
+{% endif %}
+<div class="login">
+<table>
+    <h1>登入頁面</h1>
+
+    <form action="." method="POST" name="form1" >
+        {% csrf_token %}
+        <tr><td>
+        <div style="margin-top: 30px;">帳號：<input type="text" name="username" id="username" minlength = "4" /></div>
+        </tr></td>
+        <tr><td>
+        <div style="margin-top: 30px;">密碼：<input type="password" name="password" id="password" minlength = "8" /></div>
+        </tr></td>
+        <tr><td>
+            <div style="margin-top: 30px;">驗證碼</div>
+            <div style="size: 40px;">{{postform.captcha}}</div>
+
+                
+        </tr></td>
+
+        
+    
+
+        <tr><td>
+            
+        <div style="margin-top: 30px;">
+        <input type="submit" name="button" id="button" value="登入" class="btn btn-primary" />
+        <input type="reset" name="button" id="button" value="重新輸入" class="btn btn-primary" />
+
+        <a href="/register/" class="btn btn-primary"> 註冊</a>
+        <a href="/logout/" class="btn btn-primary"> 登出</a>
+        </div> 
+        </tr></td>
+        <span style="color:red">{{message}}</span>
+    </form>
+
+</table>
+</div>
+{% endblock display %}
+</html>

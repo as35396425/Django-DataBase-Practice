@@ -1,0 +1,91 @@
+{%extends "visual.html"%}
+
+<!DOCTYPE html>
+{%load static%}
+
+
+<style type = "text/css">
+
+
+</style>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{identity}}</title>
+{{student}}
+</head>
+
+{%load static%}<!--讀取static資料夾-->
+
+
+    
+    
+
+{% block display %}
+
+
+
+<div id = "up"><h1>蝦皮二手商品價格搜尋</h1></div>
+
+
+
+{% if request.user.is_staff %}
+
+
+{% block cont %}{% endblock cont %}
+
+
+<table class="table table-hover">
+<th>商品資訊</th><th>價格</th><th>店家</th><th>功能</th>
+{% for s in student %}
+<tr>
+    <td>{{s.cName}}</td>
+    <td>{{s.cPrice}}</td>
+    <td>{{s.web_record}}</td>
+
+    <td>
+
+        <a href = '{{s.cUrl}}'target="_blank" class="btn btn-primary" title = "網址">導向</a>
+        <a href = '/delete/{{s.id}}' class="btn btn-primary" title = "刪除">刪除</a>
+        
+
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="row">
+  
+    <div class="col-lg-5"></div>
+  
+  
+  <div class="col-lg-5">
+      <a href="#up" type = "button" class="btn btn-primary "> 往上</a>
+  </div>
+  <div class="col-lg-2"></div>
+  
+  </div>
+  
+  
+  
+  <div class="row">
+  
+  <div class="col-lg-0">
+      <div id = "buttom"  class="container-lg mx-auto ">{{scar|safe}} </div></div>
+  
+  <div class="col-lg-5">
+          <div id = "buttom"  class="container-lg mx-auto ">{{line|safe}} </div>
+      </div>
+  
+{% else %}
+<p>您沒有權限登入</p>
+<a href="/login/" class="btn btn-primary"> 返回登入 </a>
+<a href="/register/" class="btn btn-primary"> 註冊</a>
+<a href="/logout/" class="btn btn-primary"> 登出</a>
+
+{%endif%}
+
+{% endblock display %}
+

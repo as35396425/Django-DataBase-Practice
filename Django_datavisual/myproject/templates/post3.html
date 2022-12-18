@@ -1,0 +1,71 @@
+{% extends 'search_result.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+
+
+<style type = "text/css">
+
+
+</style>
+
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{identity}}</title>
+
+</head>
+{%load static%}<!--讀取static資料夾-->
+
+
+
+
+    {% block cont %}
+
+    <div id = "form">
+        <table>
+    <form action = "." method = "post" >
+        {% csrf_token %}
+
+    <tr>
+        <td><div><label for="name">名字</label>
+        {{post_form.cName}}</div>
+
+    </tr>
+
+
+<!--
+    <tr>
+    <td><div><label for="Page">幾頁</label>
+        
+        {{post_form.cPage}}</div>
+    </tr>      
+ -->
+<tr>
+    <td><div><label for="select">選擇型號</label>
+        
+        {{post_form.choice_test}}</div>
+</tr>
+<tr>
+    <td><div> <input type="submit" value = "搜尋" class="btn btn-primary" >
+         <input type="button" onclick = "fn_html('clear')" value = "重設" class="btn btn-primary" >
+         <a href="/logout/" class="btn btn-primary"> 登出  </a>
+         <a href="#buttom" class="btn btn-primary">到圖表</a>
+         <a href="/post4/" class="btn btn-primary">使用者介面</a>
+         <a href = '/delete_all/' class="btn btn-primary" title = "刪除全部">刪除全部</a>
+
+        </div>
+        
+</tr> 
+
+
+    </form>
+        </table>
+</div>
+
+
+
+    {% endblock cont %}
+
+</body>
+

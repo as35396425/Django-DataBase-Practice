@@ -1,0 +1,49 @@
+{% extends 'display.html' %}
+{% load static %}
+<html>
+{% block display %}
+   
+
+
+<div class="adduser">
+    <form action="." method="POST" name="form1">
+    {% csrf_token %}
+    <div class="mb-1 mt-1">
+        <label>帳號：</label>
+        <input type="text" name="username" id="username" required="required"  minlength = "4"/>
+    </div>
+    
+    <div class="mb-1 mt-1">
+        <label>密碼：</label>
+        <input type="password" name="password" id="password" required="required"  minlength = "8"/>
+    </div>
+    
+    <div class="mb-1 mt-1">        
+        <label>姓氏：</label>
+        <input type="text" name="last_name" id="last_name" required="required" />
+    </div>
+    
+    <div class="mb-1 mt-1">        
+        <label>名字：</label>
+        <input type="text" name="first_name" id="first_name" required="required" />
+    </div>
+    
+    
+    <div class="mb-1 mt-1">        
+        <label>email：</label>
+        <input type="email" name="email" required="required" id="email" />
+    </div>
+    
+    <div class="mb-1 mt-1">        
+
+        <input type="submit" name="button" id="button" value="註冊" class="btn btn-primary" />
+
+        <span style="color:red">{{message}}</span>
+    </div>
+    </form>
+
+
+
+</div>
+{% endblock display %}
+</html>

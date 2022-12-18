@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static  %}
+
+<head>
+ <meta charset="UTF-8">
+ <title></title>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/
+bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/
+K68vbdEjh4u" crossorigin="anonymous">
+ <!-- Optional theme -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/
+bootstrap-theme.min.css" integrity="sha384-
+rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href="{% static "CSS/style1.css" %}" rel="stylesheet" type="text/css" />
+ <!-- Latest compiled and minified JavaScript -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+crossorigin="anonymous"></script>
+</head>
+
+{%load static%}<!--讀取static資料夾-->
+<div class= "up" ><h1>購物商品</h1></div>
+<div class="ahref" style="background-color: dimgray;">
+    <div class="backlogin" style="background-color: dimgray;"><a href = "http://127.0.0.1:8000/login/" type = "button">前往登入頁面</a></div> 
+    <div class="btn1"><a href = {%url 'showCart' %}>購物車頁面<a></div>
+    <div class="btn1"><a href  = {%url 'placeOrder' %}>前往下單<a></div>
+    <div class="btn1"><a href  = {%url 'userOrder' %}>過往訂單<a></div>
+    <div class="cartbtn"><a href = "http://127.0.0.1:8000/login1/">回主頁</a></li></div> 
+</div>
+
+    <div class="container" style="background-color: beige;"> <div class="row"> <div class="col-xs-6 col-xs-offset-3">
+        <div style="background-color:beige; color: rgb(18, 87, 225);;height: 60px; font-size: 30px; font-weight: bold;">這邊是物品詳情和購物車實現</div>
+        <div class="page-header"> <h1>{{ product.name}} <small>{{ product.Addr }}{{ product.Type }}</small> </h1>
+        </div>
+        <ul style="font-size: 20px;"> 
+             <li> 食物分類 {{ product.productType}}
+             <li> 食物名字 {{ product.productName }}
+             <li> 地址 {{ product.productAddr}} 
+             <li> <img src = '/media/{{ product.productImg }}' class="rounded mx-auto d-block"  height = "250" width="250"></li>
+        </ul>
+        <div class="backlogin" style="font-size: 20px;background-color: beige;"> <div class="panel-body"> {{ book.description }} </div>
+        </div>
+        <div class="backlogin" style="font-size: 20px;background-color: beige;">
+        {%for cookiesKey,cookiesVal in request.COOKIES.items  %}
+            {%if cookiesKey == product.productID|safe%}
+                目前購物車有{{cookiesVal}}個
+                
+            {%endif%}
+
+                 
+
+        {%endfor%}</div>
+        <div class="backlogin" style="font-size: 20px;background-color: beige;"><a href = "http://127.0.0.1:8000/login1/">回主頁</a></div>
+        <div class="backlogin"style="font-size: 20px;background-color: beige;"> <div class="panel-body">  
+            <a  href = {%url 'addcart' product.productID %}  method = "POST"> 加入購物車 </a>
+        </div>
+        
+        </div><!-- end of offset 3--> </div><!-- end of row-->
+        </div><!-- end of container-->

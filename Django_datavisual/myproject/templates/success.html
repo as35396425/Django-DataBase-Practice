@@ -1,0 +1,99 @@
+
+<!DOCTYPE html PUBLIC "-//W3CDTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{%load static%}
+<html xmlns = "http://www.w3.org/1999/xhtml" xml:lang = 'en'>
+    <meta charset="UTF-8">
+    <html lang = "en">
+    <title>{{identity}}</title>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"></link>
+    <link href="{% static 'CSS/style1.css' %}" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<head>
+<html lang = "en">
+<meta charset="UTF-8">
+<title>{{identity}}</title>
+</head>
+
+{%load static%}<!--讀取static資料夾-->
+<div class= "up"><h1>購物商品</h1></div>
+<div class="ahref">
+    <div class="backlogin"><a href = "http://127.0.0.1:8000/login/" type = "button">前往登入頁面</a></div> 
+    <div class="btn1"><a href = "http://127.0.0.1:8000/login1/">回主頁</a></div>
+</div>
+
+{% for category in zzz %}
+{%for type in category%}
+<li class="list-group-item">
+<a href={%url 'food_list'%}{{ type}}> {{ type }} </a>
+</li>
+{% endfor %}
+{%endfor%}
+
+<table class="table table-hover">
+
+
+<th>商品名稱</th><th>商品單價</th><th>商品總價</th>
+
+{%for s in order_product_list%}
+<tr>    
+<td>{{s.productInfo.productName}}</td>
+<td>單價{{s.productInfo.productPrice }}元</td>
+<td>小計{{s.total_money}}元</td>
+</tr>
+{%endfor%}
+</table>
+
+
+<div>
+<table>
+    <tr>
+                <td style="color: rgb(0, 0, 0);border-radius: 0px;font-size: x-large;text-align: left;">收貨地址: {{order_info.orderAddr}}</td>
+                <form action = "/submit_order/" method = "post">
+                    {%csrf_token%}
+    </tr>
+    <tr>
+            <td style="color: rgb(0, 0, 0);border-radius: 0px;font-size: x-large;text-align: left;">付款方式: <label color = 'red' class = "cash">貨到付款</label></h3></div></td>
+            <form action = "/submit_order/" method = "post">
+                {%csrf_token%}
+    </tr>
+    <tr>
+        
+        <td style="color: rgb(255, 0, 0);border-radius: 0px;font-size: xx-large;text-align: left;">總價 {{total_money|add:10}} 元</td>
+    </tr>
+    <tr>
+        <td style="color: rgb(0, 0, 0);border-radius: 0px;text-align: left;">(共<em>{{ total_num}}</em> 件商品， 純物品總金額</b>{{total_money}}元)</td>
+    </tr>
+</table>
+</div>
+</form>
+
+
+<div class="row">
+
+<div class="col-lg-5"></div>
+
+
+<div class="col-lg-5">
+<a href="http://127.0.0.1:8000/login1/" type = "button" class="btn btn-primary "> 回首頁</a>
+</div>
+<div class="col-lg-2"></div>
+
+</div>
+
+
+
+
+<div class="row">
+
+<div class="col-lg-0">
+<div id = "buttom"  class="container-lg mx-auto ">{{scar|safe}} </div></div>
+
+<div class="col-lg-5">
+<div id = "buttom"  class="container-lg mx-auto ">{{line|safe}} </div>
+</div>
+
+
+

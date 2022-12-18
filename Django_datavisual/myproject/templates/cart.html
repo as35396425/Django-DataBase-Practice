@@ -1,0 +1,56 @@
+<html>
+    <style type = "text/css">
+
+
+        label{
+            cursor: pointer;
+            display: inline-block;
+            padding: 1px 3px;
+            text-align: right;
+            width: 80px;
+        }
+
+    </style>
+    <head> 
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"></link>
+    
+
+</head>
+
+
+<div class="container mt-3">
+
+    
+    <form action="." method="POST" name="form1">
+    {% csrf_token %}
+    
+
+
+    
+    <div class="mb-1 mt-1">
+        <label>帳號：</label>
+        <input type="text" name="userID" id="userID" required="required" />
+    </div>
+    <div class="mb-1 mt-1">
+        <label>商品號：</label>
+        <input type="text" name="productID" id="productID" required="required" />
+    </div>
+    <div class="mb-1 mt-1">
+        <label>商品數量：</label>
+        <input type="text" name="amount" id="amount" required="required"  />
+    </div>
+
+
+    <div class="mb-1 mt-1">        
+
+        <input type="submit" name="button" id="button" value="註冊" class="btn btn-primary" />
+
+        <span style="color:red">{{message}}</span>
+    </div>
+</form>
+
+
+    
+
+</div>
+</html>

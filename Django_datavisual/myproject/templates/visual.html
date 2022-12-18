@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>proposal</title>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"></link>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+        
+    ///函式寫入的地方
+    function fn_html(status){
+        if (status == "clear"){
+            $("#id_cName").val("");
+        }
+
+        }
+        
+    </script>
+</head>
+
+
+<body>
+
+    <div class="container-fluid ">
+        {% block display %}
+        {% endblock display %}
+    </div>
+
+</body>
+
+</html>
+
+

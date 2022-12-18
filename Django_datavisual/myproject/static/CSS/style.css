@@ -1,0 +1,42 @@
+@charset "utf-8";
+body {
+    background-image: url(images/1698004.jpg);
+}
+.title {
+    background-color: darkred;
+    height: 100px;
+    width: 1536px;
+    font-size: xx-large;
+    font-weight:bolder;
+    color:azure ;
+    text-align: center;
+}
+.login {
+    background-color:antiquewhite;
+    height: 500px;
+    width: 400px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 25px;
+    font-family: serif;
+    font-weight: bolder;
+    padding-top: 10px;
+}
+
+.login h1{
+    color:brown;
+    font-weight: bold;
+}
+.adduser {
+    background-color:antiquewhite;
+    height: 600px;
+    width: 320px;
+    margin-left: 630px;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    font-size: 25px;
+}

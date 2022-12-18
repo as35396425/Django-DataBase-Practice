@@ -1,0 +1,129 @@
+{%extends "display.html"%}
+
+<!DOCTYPE html>
+{%load static%}
+
+
+<style type = "text/css">
+
+    body{
+        background-size:20% 20%;
+    }
+    th{
+        color:white;
+        background:black;
+    }
+    td{
+        color:red;
+        background:white;
+    }
+    table{
+        width : 680px;
+        height : 100px;
+        border:2.5px solid black;
+    }
+
+</style>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{identity}}</title>
+{{student}}
+</head>
+
+{%load static%}<!--讀取static資料夾-->
+<div><body bgcolor="white" background={{background}} ></div>
+<body>
+    <img src = "{% static "image\hina.jpg" %}"><!--前面為剛剛讀入資料夾，後面是path-->
+    
+  
+
+
+
+
+    
+    
+
+    {% block display %}
+    <h1>歡迎光臨 </h1>
+    {% block cont %}{% endblock cont %}
+    
+<table class="table table-hover">
+<th>t</th><th>姓名</th><th>性別</th><th>生日</th><th>電話</th><th>地址</th><th>email</th><th>功能</th>
+{%for s in student%}
+<tr>
+    <td>{{s.id}}</td>
+    <td>{{s.cName}}</td>
+    <td>{{s.cSex}}</td>
+    <td>{{s.cBirthday}}</td>
+    <td>{{s.cPhone}}</td>
+    <td>{{s.cAddr}}</td>
+    <td>{{s.cEmail}}</td>
+    
+    <td>
+        <a href = '/edit/{{s.id}}/' class="btn btn-primary" title = "編輯一">編輯一</a>
+        <a href = '/edit2/{{s.id}}/load' class="btn btn-primary" title = "編輯二">編輯二</a>
+        <a href = '/delete/{{s.id}}'  class="btn btn-primary" title = "刪除" >刪除</a>
+    </tr>
+
+{%endfor%}
+</table>
+
+{% endblock display %}
+
+
+
+</body>
+{% for s in page_of_posts.object_list %}
+<tr>
+    <td>{{s.cName}}</td>
+    <td>{{s.cPrice}}</td>
+
+    <td>
+        <a href = '{{s.cUrl}}'target="_blank" class="btn btn-primary" title = "網址">導向</a>
+        <a href = '/delete/{{s.id}}' class="btn btn-primary" title = "刪除">刪除</a>
+        <a href = '/delete_all/' class="btn btn-primary" title = "刪除全部">刪除全部</a>
+    </tr>
+
+{%endfor%}
+
+</table>
+<ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% for page_num in page_range_display%}
+        {% if page_num == page_of_posts.number %}
+            <li class="page-item active"><a  method = "POST" class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+        {% else %}
+            {% if page_num == "..." %}
+                <li>{{ page_num }}</li>
+            {% else %}
+                <li><a class="page-link"   method = "POST" href="?page={{ page_num }}">{{ page_num }}</a></li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}  
+
+    <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul><p>
+    目前正在第 {{ page_of_posts.number }} 頁, 共 {{ page_of_posts.paginator.num_pages }} 頁
+    </p>
+</div>
+</div>
+{% else %}
+<div class="container mt-3">
+
+<p>您尚未登入喔~</p>
+</div>
+<a href="/login/" class="btn btn-primary"> 登入 </a>
+<a href="/register/" class="btn btn-primary"> 註冊</a>
+
+
+{%endif%}
+
+{% endblock display %}

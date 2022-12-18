@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<style type = "text/css">
+
+    body{
+        background-size:50% 50%;
+    }
+    img{
+        width:10% ;length:10%;
+    }
+</style>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    
+    <h1>歡迎光臨</h1>
+
+    {%csrf_token%}
+    
+    <form action = "." method = "POST" name = "form1">
+        <label for="name">你的名字</label>
+        <input type="text" name = "cName"><br>
+
+
+
+        <input type="submit" value = "刪除" >
+        <input type="reset" value = "reset" >
+    </form>

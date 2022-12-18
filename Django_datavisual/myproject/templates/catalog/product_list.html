@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+{%load static%}
+
+
+<style type = "text/css">
+
+    body{
+        background-size:20% 20%;
+    }
+    th{
+        color:white;
+        background:black;
+    }
+    td{
+        color:red;
+        background:white;
+    }
+    table{
+        width : 680px;
+        height : 100px;
+        border:2.5px solid black;
+    }
+
+</style>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{identity}}</title>
+</head>
+
+{%load static%}<!--讀取static資料夾-->
+
+<li class="list-group-item">
+<a href = "http://127.0.0.1:8000/login1/">全部</a></li>
+     {% for category in view.categories %}
+        {%for type in category%}
+            <li class="list-group-item">
+            <a href={%url 'food_list'%}{{ type}}> {{ type }} </a>
+            </li>
+        {% endfor %}
+    {%endfor%}
+....{{student}}
+
+<div id = "up"><h1>蝦皮二手商品價格搜尋</h1></div>
+{{view.search}}
+<div id = "form">
+    <table>
+
+<form action = "/login12/" method = "post" >
+    {% csrf_token %}
+
+<tr>
+    <td><div><label for="name">名字</label>
+    {{form}}</div>
+
+</tr>
+
+<table class="table table-hover">
+<th>商品名稱</th><th>店家地址</th><th>店名</th><th>種類</th>
+{{student}}
+
+
+{%for g in view.get_queryset %}
+{{g.productName}}
+
+{%endfor%}
+
+{%for s in view.food%}
+<tr>
+    <td>{{s.productName}}</td>
+    <td>{{s.productAddr}}</td>
+    <td>{{s.productType}}</td>
+    <td>
+        <a href = {%url 'foodDetailview' s.pk %} > {{s.pk}} </a></td>
+    </tr>
+
+{%endfor%}
+
+
+</table>
+
+<div class="row">
+  
+  <div class="col-lg-5"></div>
+
+
+<div class="col-lg-5">
+    <a href="#up" type = "button" class="btn btn-primary "> 往上</a>
+</div>
+<div class="col-lg-2"></div>
+
+</div>
+
+
+
+<div class="pagination">
+    <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+    <span class="current">
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+    {% endif %}
+    </span>
+   </div>
+   
+
+
+<div class="row">
+
+<div class="col-lg-0">
+    <div id = "buttom"  class="container-lg mx-auto ">{{scar|safe}} </div></div>
+
+<div class="col-lg-5">
+        <div id = "buttom"  class="container-lg mx-auto ">{{line|safe}} </div>
+    </div>
+
+
+

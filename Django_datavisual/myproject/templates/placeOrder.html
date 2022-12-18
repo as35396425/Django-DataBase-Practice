@@ -1,0 +1,125 @@
+
+<!DOCTYPE html PUBLIC "-//W3CDTD XHTML 1.0 Transitional//EN"
+                        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{%load static%}
+<html xmlns = "http://www.w3.org/1999/xhtml" xml:lang = 'en'>
+    <meta charset="UTF-8">
+    <title>proposal</title>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"></link>
+    <link href="{% static 'CSS/style1.css' %}" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{identity}}</title>
+</head>
+
+{%load static%}<!--讀取static資料夾-->
+
+<div class= "up"><h1>購物商品</h1></div>
+<div class="ahref">
+    <div class="backlogin"><a href = "http://127.0.0.1:8000/login/" type = "button">前往登入頁面</a></div> 
+    <div class="btn1"><a href = "http://127.0.0.1:8000/login1/">回主頁</a></div>
+    <div class="btn1"><a href  = {%url 'userOrder' %}>過往訂單<a></div>
+</div>
+
+     {% for category in zzz %}
+        {%for type in category%}
+            <li class="list-group-item">
+            <a href={%url 'food_list'%}{{ type}}> {{ type }} </a>
+            </li>
+        {% endfor %}
+    {%endfor%}
+
+
+<table class="table table-hover">
+
+
+    <th>商品名稱</th><th>店家地址</th><th>總類</th><th>價格</th><th>數量</th>
+
+
+
+{%for s in cart_goods_list%}
+<tr>
+    <td>{{s.productName}}</td>
+    <td>{{s.productAddr}}</td>
+    <td>{{s.productType}}</td>
+    <td>{{s.productPrice}}元</td>
+    <td>  {{s.aGoodTotalPrice}}</td>
+    <td><a href = {%url 'foodDetailview' s.pk %} > 詳情 </a></td>
+    
+
+        
+</tr>
+
+
+
+{%endfor%}
+</table>
+
+<div class="useraddr">
+<table>
+    <h1 style="background-color: forestgreen; font-weight: bolder;color: rgb(243, 241, 241);">收貨地址</h1>
+    <form action = "/submit_order/" method = "post">
+        {%csrf_token%}
+                <tr>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;">收貨地址 </td>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;"><input style = '...' type = "text"  name = "addr"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;">收貨人 </td>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;"><input style = '...' type = "text"  name = "buy"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;">連絡電話 </td>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;"><input style = '...' type = "text"  name = "phone"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;">備註 </td>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;"><input style = '...' type = "text"  name ="extra"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;">方法</td>
+                    <td style="background-color: rgb(2, 80, 14);color: rgb(246, 242, 242);border-radius: 0px;">
+                        <input type = "radio" name = "pay_style" checked>
+                        <label class = "cash">貨到付款</label></td>
+                </tr>
+</table>
+</div>
+
+<table>
+    <h1 style="background-color: rgb(2, 2, 2);color: rgb(255, 255, 255); font-weight: bolder;">總價</h1>
+    <tr>
+        <td style="background-color: rgb(206, 202, 183, 0.815);color: rgb(221, 9, 9);border-radius: 0px;font-size: x-large;"> 共<em>{{cart_goods_count}}</em> 件商品， 總金額</b>{{cart_goods_money}}</td>
+    </tr>
+    <tr>
+        <td style="background-color: rgb(206, 202, 183, 0.815);color: rgb(221, 9, 9);border-radius: 0px;font-size: x-large;"><input type = "submit" class="btn btn-primary" value = "提交訂單"></td>
+        <td style="background-color: rgb(206, 202, 183, 0.815);color: rgb(221, 9, 9);border-radius: 0px;font-size: x-large;"><a href="#up" type = "button" class="btn btn-primary "> 回上一頁</a></td>
+    </tr>
+</table>
+
+
+<div class="row">
+  
+  <div class="col-lg-5"></div>
+<div class="col-lg-2"></div>
+
+</div>
+
+
+
+
+<div class="row">
+
+<div class="col-lg-0">
+    <div id = "buttom"  class="container-lg mx-auto ">{{scar|safe}} </div></div>
+
+<div class="col-lg-5">
+        <div id = "buttom"  class="container-lg mx-auto ">{{line|safe}} </div>
+    </div>
+
+
+

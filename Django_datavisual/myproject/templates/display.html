@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+
+    
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>資料視覺網頁</title>
+    {% load static %}
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"></link>
+    <link href="{% static "CSS/style.css" %}" rel="stylesheet" type="text/css" />
+</head>
+
+
+
+<body>
+    <div class="title">訂餐網頁</div>
+            {% block display %}
+            {% endblock display %}
+
+<!--
+    <div class="container-lg mt-3 ">
+        <h2>鐵達尼號存活-圖表範例</h2>
+
+  <div class="row">
+    <div id="bar_pclass" style="width:800px; height:400px;" class="col-sm-6"></div>
+
+    <div id="bar_sex" style="width:800px; height:400px;" class="col-sm-6"></div>
+</div>
+<div class = "row">
+    <div id="bar_emb" style="width:800px; height:400px;" class ="col-sm-6"></div>
+
+    <div id="pie_sur" style="width:800px; height:400px;" class = "col-sm-6"></div>
+<div>
+
+
+</div>  -->
+
+
+
+<!--get上面的div id(id必須一樣) ->使用echarts的init方法初始化-->
+
+<!--寫一個function 使用ajax get API -> 如果成功 劃出result裡面的data-->
+
+
+
+
+<script type = "text/javascript">
+        
+        var chart_pclass = echarts.init(document.getElementById('bar_pclass'), 'white', {renderer: 'canvas'});  
+        var chart_sex = echarts.init(document.getElementById('bar_sex'), 'white', {renderer: 'canvas'});
+        var chart_emb = echarts.init(document.getElementById('bar_emb'), 'white', {renderer: 'canvas'});
+        var chart_pie_sur = echarts.init(document.getElementById('pie_sur'), 'white', {renderer: 'canvas'});
+
+        
+        $(
+            function () {
+                bar_pclass(chart_pclass);
+                bar_sex(chart_sex);
+                bar_emb(chart_emb);
+                pie_sur(chart_pie_sur);
+            }
+        );
+        
+        
+        function bar_pclass() { 
+            
+
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:8000/demo/bar_pclass",
+                dataType: 'json',
+                success: function (result) {
+                    chart_pclass.setOption(result.data);
+                }
+            });
+        }
+        function bar_sex() {
+            
+
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:8000/demo/bar",
+                dataType: 'json',
+                success: function (result) {
+                    chart_sex.setOption(result.data);
+                }
+            });
+        }
+        function bar_emb() {
+            
+
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:8000/demo/bar_emb",
+                dataType: 'json',
+                success: function (result) {
+                    chart_emb.setOption(result.data);
+                }
+            });
+        }
+        function pie_sur() {
+            
+
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:8000/demo/pie_sur",
+                dataType: 'json',
+                success: function (result) {
+                    chart_pie_sur.setOption(result.data);
+                }
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+

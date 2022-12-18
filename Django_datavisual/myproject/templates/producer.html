@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+{%load static%}
+
+<meta charset="UTF-8">
+<title>proposal</title>
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"></link>
+<link href="{% static 'CSS/style1.css' %}" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{identity}}</title>
+</head>
+
+{%load static%}<!--讀取static資料夾-->
+
+<div class= "up"><h1>購物商品</h1></div>
+<div class="ahref">
+    <div class="backlogin"><a href = "http://127.0.0.1:8000/login/" type = "button">前往登入頁面</a></div> 
+    <div class="btn1"><a href = {%url 'showCart' %}>購物車頁面<a></div>
+    <div class="btn1"><a href  = {%url 'placeOrder' %}>前往下單<a></div>
+    <div class="btn1"><a href  = {%url 'userOrder' %}>過往訂單<a></div>
+    <div class="cartbtn">現在購物車有{{cartCount}}種物品</div> 
+</div>
+
+<div class="search">
+    <form action = "/login1/" method = "post" >
+        {% csrf_token %}
+    <tr>
+
+        <div class="name"><label for="name">商品搜尋</label>{{post_form.cName}}</div>
+      <div class="name"><label for="name">店家搜尋</label>{{post_form.storeName}}</div>
+       <input type="submit" name="button" id="button" value="搜尋" class="btn btn-primary" />
+    </form>
+        <div class="list-group-item">
+            <a href =" {%url 'food_list' %}all">全部</a></div>
+                {% for category in zzz %}
+                    {%for type in category%}
+                        <li class="list-group-item">
+                        <a href={%url 'food_list'%}{{ type}}> {{ type }} </a>
+                        </li>
+                    {% endfor %}
+                {%endfor%}
+    </tr> 
+</div>
+<div class="product">
+    <table>
+        <th>商品名稱</th>
+        <th>店家名字</th>
+        <th>店家地址</th>
+        <th>種類</th>
+        <th>商品圖</th>
+        <th>商品頁</th>
+        <th>商品價格</th>
+        <th>加入購物車</th>
+
+        {%for s in  page_obj%}
+        <tr>
+            <td>{{s.productName}}</td>
+            <td>{{s.storeName}}</td>
+            <td>{{s.productAddr}}</td>
+            <td>{{s.productType}}</td>
+            
+            <td><img src = '/media/{{s.productImg }}' class="rounded mx-auto d-block"  height = "240" width="250"></td>
+            
+            <td><a href = {%url 'foodDetailview' s.pk %} > 詳情 </a></td>
+            <td>{{s.productPrice}}元</td>
+            <td><a href = {%url 'addcart' s.pk %} > 加入購物車 </a></td>
+
+
+
+        {%endfor%}
+    </table>
+</div>
+
+<div class="row">
+  
+  <div class="col-lg-5"></div>
+
+
+<div class="col-lg-2"></div>
+</table>
+</div>
+
+
+
+<div class="pagination">
+    <div class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}",width>上一頁</a>
+    {% endif %}
+    <div class="current">
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </div>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">下一頁</a>
+    {% endif %}
+    </div>
+</div>
+   
+
+
+<div class="row">
+
+<div class="col-lg-0">
+    <div id = "buttom"  class="container-lg mx-auto ">{{scar|safe}} </div></div>
+
+<div class="col-lg-5">
+        <div id = "buttom"  class="container-lg mx-auto ">{{line|safe}} </div>
+    </div>
+
+
+

@@ -1,1 +1,1 @@
-ECHO �w�ҰʡC
+就只是Django購物網站
